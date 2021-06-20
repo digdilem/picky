@@ -7,11 +7,11 @@ use Plack::Builder;
 use DBI;
 use File::Slurp;
 
-my $docpath = "/data/textfiles";  # Where the docs at
+my $docpath = "/data/textfiles";  # Change to the local path of the text files
 my $debug = 1;
-my $db='storiesDb';
-my $dbusername='storiesUser';
-my $dbpassword='biggunsPass';
+my $db='storiesDb';		# Sql Database name
+my $dbusername='storiesUser';	# SQL user with ALL PRIVILEGES to $db
+my $dbpassword='biggunsPass';	# SQL password for above
 
 # Database Inits
 my $dsn = "DBI:mysql:host=localhost;database=$db";
@@ -45,7 +45,6 @@ my $app = sub {     # Main loop
 	if ( not $dbh->ping ) {  connect_db();  }			# Check DB is still there
 
 	my $sql = "SELECT * FROM storiesTb ORDER BY RAND() LIMIT 1;";		# random choice, no weighting
-
 
 	# Check for additional quick actions and modify query
 	if ($request->param('edit_text') ) {  # Some text has been submitted
@@ -94,8 +93,6 @@ my $app = sub {     # Main loop
 		# Remove from the database
 		 $dbh->do("DELETE FROM storiesTb WHERE filename = '$todel' LIMIT 1; ");
 		}
-
-	# Got final query, execute
 
 	if ($reload_last == 0) {
 		my $sth = $dbh->prepare($sql);
@@ -156,7 +153,6 @@ sub rescan_files {  # Scan filedir and import all files if they don't exist.
 		my $sql = "INSERT IGNORE INTO storiesTb (filename) VALUES ($short_filename) ";
 		my $sth = $dbh->prepare($sql);
 		$sth->execute();
-#		print STDERR "DEBUG2 ($sql)\n";
 		}
 
 	$last_scan = time();
@@ -193,7 +189,6 @@ sub edit_file {
 		print STDERR "Loading for edit: $loadfile\n";
 		$editbuffer = read_file($loadfile);
 		}
-
 
 	# Display buffer in editbox
 	$html .= qq~
