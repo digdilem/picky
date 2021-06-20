@@ -14,6 +14,7 @@ I keep some stories in .txt format in a directory. I wanted a simple way to be a
 - Allows you to pick "great" files, those whose score is over 90
 - It will auto-add new files to the database.
 - Score is saved in a mysql/mariadb database.
+- Fast. Tested on dirs with many hundreds of files, should be good for many tens of thousands. Only rescans periodically so doesn't rescan each time.
 - Runs as a systemd service on a configurable port. systemd unit file supplied
  
 # Installation:
