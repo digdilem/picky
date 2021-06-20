@@ -1,0 +1,17 @@
+[Unit]
+Description=Digdilem's random story spinner
+After=network.target
+
+[Service]
+# Change the location of plackup, change the http port by changing 5001 to what you desire, and lastly, the path to the .psgi file.
+# "-r" is a plack switch to reload the file if it changes, useful for any editing you may do.
+
+ExecStart=/usr/local/bin/plackup -p 5001 -r /var/www/picky.psgi
+WorkingDirectory=/var/www/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
