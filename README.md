@@ -12,6 +12,8 @@ I keep some stories in .txt format in a directory. I wanted a simple way to be a
 - Can delete files (Note: There's no confirmation and it will need write permission over the files)
 - Allows you to vote up and down a file by 10 points out of a 100, or give a particularly great file a "Top score" of 100
 - Allows you to pick "great" files, those whose score is over 90
+- It will auto-add new files to the database.
+- Score is saved in a mysql/mariadb database.
 - Runs as a systemd service on a configurable port. systemd unit file supplied
  
 # Installation:
