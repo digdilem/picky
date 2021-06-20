@@ -31,5 +31,6 @@ systemctl daemon-reload
 systemctl start picky
 systemctl enable picky
 ```
-5. All going well, point your webbrowser at that machine, port 5001 (or whatever you specified in picky.service)
+5. Create a database in mysql with the contents of the `picky.sql` file and a user that can read it (Username and password are saved in `picky.psgi`)
+6. All going well, point your webbrowser at that machine, port 5001 (or whatever you specified in picky.service)
 
